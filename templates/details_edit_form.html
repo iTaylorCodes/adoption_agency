@@ -1,0 +1,42 @@
+{% extends 'base.html' %}{% block title %}Pet Details{% endblock %}{% block content %}
+
+<div class="container">
+	<h1 class="text-info">
+		{{pet.name}}
+		<span class="text-secondary h6">
+			{% if pet.available == True %}
+			<b> is available!</b>
+			{% else %} is not available.{% endif %}
+		</span>
+	</h1>
+	<div class="row justify-content-center">
+		<img src="{{pet.photo_url}}" alt="photo of {{pet.name}}" class="img-thumbnail img-fluid" style="width: 50%" />
+		<p class="text-center">
+			Hi I'm {{pet.name}} the {{pet.age}} year old {{pet.species}}. Do you want to adopt me?
+		</p>
+	</div>
+</div>
+<hr />
+<div class="container">
+	<h3 class="text-center">Edit Pet</h3>
+	<div class="row justify-content-center">
+		<div class="col-md-8">
+			<form action="/{{pet.id}}" method="POST">
+				<div class="form-group">
+					{{form.photo_url.label}} {{form.photo_url(class_="form-control")}} {% for err in
+					form.photo_url.errors %}
+					<small class="form-text text-danger"> {{err}} </small>
+					{% endfor %} {{form.notes.label}} {{form.notes(class_="form-control")}} {% for err in
+					form.notes.errors %}
+					<small class="form-text text-danger"> {{err}} </small>
+					{% endfor %} {{form.available.label}} {{form.available}} {% for err in form.photo_url.errors %}
+					<small class="form-text text-danger"> {{err}} </small>
+					{% endfor %}
+				</div>
+				<button type="submit" class="btn btn-success btn-lg">Save</button>
+				<a href="/" class="btn btn-secondary btn-lg float-end">Go Back</a>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
