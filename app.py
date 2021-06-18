@@ -1,7 +1,6 @@
-from operator import ne
 from flask import Flask, request, render_template,  redirect, flash
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db,  connect_db, Pet
+from models import db, connect_db, Pet
 from forms import AddPetForm, EditPetForm
 
 app = Flask(__name__)
@@ -52,6 +51,7 @@ def show_pet_deatils_and_edit_form(pet_id):
         pet.available = form.available.data
 
         db.session.commit()
+
         return redirect('/')
     else:
         return render_template('details_edit_form.html', pet=pet, form=form)

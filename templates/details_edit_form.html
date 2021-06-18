@@ -21,10 +21,10 @@
 	<h3 class="text-center">Edit Pet</h3>
 	<div class="row justify-content-center">
 		<div class="col-md-8">
-			<form action="/{{pet.id}}" method="POST">
+			<form method="POST">
 				<div class="form-group">
-					{{form.photo_url.label}} {{form.photo_url(class_="form-control")}} {% for err in
-					form.photo_url.errors %}
+					{{form.hidden_tag()}}{{form.photo_url.label}} {{form.photo_url(class_="form-control")}} {% for err
+					in form.photo_url.errors %}
 					<small class="form-text text-danger"> {{err}} </small>
 					{% endfor %} {{form.notes.label}} {{form.notes(class_="form-control")}} {% for err in
 					form.notes.errors %}

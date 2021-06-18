@@ -2,47 +2,47 @@
 
 
 <div class="container py-2">
-	<a href="/add" class="btn btn-info btn-lg">Add a Pet</a>
+    <div class="row">
+        <div class="col">
+            <h1>Adoption Agency</h1>
+        </div>
+        <div class="col">
+	        <a href="/add" class="btn btn-info">Add a Pet</a>
+        </div>
+    </div>
 </div>
 
-<div class="container py-2">
-	<h3>Available Pets</h3>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3>Available Pets</h3>
 
-	{% for pet in pets %}
-	<div class="card" style="width: 50%">
-		<a href="/{{pet.id}}">
-            <img src="{{pet.photo_url}}" alt="photo of {{pet.name}}" class="img-thumbnail img-fluid" />
-		<p class="text-info">
-			{{pet.name}}
-        </a>
-            {% if pet.available == True %}
-			<b class="text-secondary"> is available!</b>
-			{% else %}
-			<span class="text-warning"> is not available.</span>
-			{% endif %}
-		</p>
-	</div>
-	{% endfor %}
-</div>
+            {% for pet in pets if pet.available == True %}
+            <div class="card" style="width: 50%">
+                <a href="/{{pet.id}}">
+                    <img src="{{pet.photo_url}}" alt="photo of {{pet.name}}" class="img-thumbnail img-fluid" />
+                    <p class="text-info">
+                    {{pet.name}}
+                </a><b class="text-secondary"> is available!</b>
+                    </p>
+            </div>
+            {% endfor %}
+        </div>
 
-<div class="container py-2">
-	<h1>Unavailable Pets</h1>
+        <div class="col">
+            <h3>Unavailable Pets</h3>
 
-	{% for pet in pets %}
-	<div class="card" style="width: 50%">
-		<a href="/{{pet.id}}">
-            <img src="{{pet.photo_url}}" alt="photo of {{pet.name}}" class="img-thumbnail img-fluid" />
-		<p class="text-info">
-			{{pet.name}}
-        </a>
-            {% if pet.available == True %}
-			<b class="text-secondary"> is available!</b>
-			{% else %}
-			<span class="text-warning"> is not available.</span>
-			{% endif %}
-		</p>
-	</div>
-	{% endfor %}
+            {% for pet in pets if pet.available == False %}
+            <div class="card" style="width: 50%">
+                <a href="/{{pet.id}}">
+                    <img src="{{pet.photo_url}}" alt="photo of {{pet.name}}" class="img-thumbnail img-fluid" />
+                    <p class="text-info">{{pet.name}}
+                </a><span class="text-secondary"> is not available.</span>
+                    </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 
 {% endblock %}
